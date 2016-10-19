@@ -21,17 +21,24 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+
     testCompile 'junit:junit:4.12'
-
-
+    //LeakCanary 内存检测
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     //butter knife
-    compile 'com.jakewharton:butterknife:8.0.1'
-    apt 'com.jakewharton:butterknife-compiler:8.0.1'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
     //logger
-    compile 'com.github.orhanobut:logger:1.12'
+    compile 'com.orhanobut:logger:1.15'
+    //上下拉 GitHub地址 https://github.com/Aspsine/SwipeToLoadLayout
+    compile 'com.github.Aspsine:SwipeToLoadLayout:1.0.3'
+
 }
