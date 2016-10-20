@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * 项目名称：cailaia
  * 类描述：
  * 修改人：
  * 修改时间：
