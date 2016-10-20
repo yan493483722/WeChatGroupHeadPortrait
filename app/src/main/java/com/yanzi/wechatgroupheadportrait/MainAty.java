@@ -1,8 +1,8 @@
 package com.yanzi.wechatgroupheadportrait;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -12,6 +12,7 @@ import com.yanzi.wechatgroupheadportrait.adapter.HeadPortraitAdapter;
 import com.yanzi.wechatgroupheadportrait.entity.GroupHeaderPortraitEntity;
 import com.yanzi.wechatgroupheadportrait.model.MyBitmapEntity;
 import com.yanzi.wechatgroupheadportrait.utils.PropertiesUtil;
+import com.yanzi.wechatgroupheadportrait.utils.RecyclerListDiv;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -32,11 +33,14 @@ public class MainAty extends AppCompatActivity {
 
     private List<GroupHeaderPortraitEntity> groupHeaderPortraitEntityList;
 
+    private Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_main);
         ButterKnife.bind(this);
+        mContext = this;
         initComponents();
         initData();
         headPortraitAdapter.notifyDataSetChanged(groupHeaderPortraitEntityList);
@@ -86,17 +90,22 @@ public class MainAty extends AppCompatActivity {
         if (groupHeaderPortraitEntityList == null) {
             groupHeaderPortraitEntityList = new ArrayList<>();
         }
-        for (int i = 1; i < 9; i++) {
+        for (int i = 0; i < 9; i++) {
 
             GroupHeaderPortraitEntity entity = new GroupHeaderPortraitEntity();
 
             List<Integer> entityList = new ArrayList<>();
             entityList.add(R.drawable.a);
-            entityList.add(R.drawable.b);
+
             switch (i) {
+                case 0:
+                    entity.setName("one chat ");
+                    entity.setDesc("one by one chat ");
+                    break;
                 case 1:
                     entity.setName("two chat ");
                     entity.setDesc("two chat content");
+                    entityList.add(R.drawable.b);
                     break;
                 case 2:
                     entity.setName("three chat ");
@@ -167,12 +176,16 @@ public class MainAty extends AppCompatActivity {
      * 实例化组件
      */
     private void initComponents() {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-        gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mainRecyclerView.setLayoutManager(gridLayoutManager);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mainRecyclerView.setLayoutManager(linearLayoutManager);
         groupHeaderPortraitEntityList = new ArrayList<>();
         headPortraitAdapter = new HeadPortraitAdapter(this, groupHeaderPortraitEntityList);
         mainRecyclerView.setAdapter(headPortraitAdapter);
+
+        RecyclerListDiv dividerItemDecoration = new RecyclerListDiv(mContext,
+                RecyclerListDiv.HORIZONTAL);
+        mainRecyclerView.addItemDecoration(dividerItemDecoration);
     }
 
 
