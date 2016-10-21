@@ -7,15 +7,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
 import com.yanzi.wechatgroupheadportrait.adapter.HeadPortraitAdapter;
 import com.yanzi.wechatgroupheadportrait.entity.GroupHeaderPortraitEntity;
-import com.yanzi.wechatgroupheadportrait.model.MyBitmapEntity;
-import com.yanzi.wechatgroupheadportrait.utils.PropertiesUtil;
 import com.yanzi.wechatgroupheadportrait.utils.RecyclerListDiv;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -176,7 +172,7 @@ public class MainAty extends AppCompatActivity {
      * 实例化组件
      */
     private void initComponents() {
-        LinearLayoutManager linearLayoutManager =  new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mainRecyclerView.setLayoutManager(linearLayoutManager);
         groupHeaderPortraitEntityList = new ArrayList<>();
