@@ -47,7 +47,7 @@ public class BitmapUtil {
             // Log.d("BitmapUtil","inSampleSize===>"+opts.inSampleSize);
             opts.inJustDecodeBounds = false;
             bitmap = BitmapFactory.decodeFile(imgPath, opts);
-
+            //
         } catch (OutOfMemoryError err) {
             Log.d("BitmapUtil", "[getScaleDraw] out of memory");
 

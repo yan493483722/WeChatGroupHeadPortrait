@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
 import com.yanzi.wechatgroupheadportrait.R;
 import com.yanzi.wechatgroupheadportrait.entity.GroupHeaderPortraitEntity;
+import com.yanzi.wechatgroupheadportrait.utils.BitmapUtil;
 
 import java.util.List;
 
@@ -54,13 +56,14 @@ public class HeadPortraitAdapter extends RecyclerView.Adapter<HeadPortraitAdapte
         holder.itemGroupPortraitDesc.setText(entity.getDesc());
         //先得到目标文件的大小 来决定当前文件的尺寸
         ViewGroup.LayoutParams layoutParams = holder.itemGroupPortraitImage.getLayoutParams();
-        //总宽
+        //总宽 px
         int totalWidth = layoutParams.width;
-        //总高
+        //总高 px
         int totalHeight = layoutParams.height;
+        Logger.e("totalWidth" + totalWidth + "totalHeight" + totalHeight);
         switch (position) {
-            case 1:
-
+            case 1://将目标文件压缩到指定的大小，然后进行设置
+//                BitmapUtil.
                 break;
             case 2:
                 break;
