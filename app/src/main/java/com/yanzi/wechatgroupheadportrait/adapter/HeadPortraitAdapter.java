@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.yanzi.wechatgroupheadportrait.R;
 import com.yanzi.wechatgroupheadportrait.entity.GroupHeaderPortraitEntity;
+import com.yanzi.wechatgroupheadportrait.utils.BitmapUtil;
 
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class HeadPortraitAdapter extends RecyclerView.Adapter<HeadPortraitAdapte
         holder.itemGroupPortraitDesc.setText(entity.getDesc());
         switch (position) {
             case 1:
-
+//                BitmapUtil.getScreenWidthAndHeight();
                 break;
             case 2:
                 break;

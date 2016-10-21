@@ -176,7 +176,7 @@ public class MainAty extends AppCompatActivity {
      * 实例化组件
      */
     private void initComponents() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager =  new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mainRecyclerView.setLayoutManager(linearLayoutManager);
         groupHeaderPortraitEntityList = new ArrayList<>();
@@ -189,26 +189,26 @@ public class MainAty extends AppCompatActivity {
     }
 
 
-    private List<MyBitmapEntity> getBitmapEntitys(int count) {
-        List<MyBitmapEntity> mList = new LinkedList<>();
-        String value = PropertiesUtil.readData(this, String.valueOf(count),
-                R.raw.data);
-        Logger.d("value=>" + value);
-        String[] arr1 = value.split(";");
-        int length = arr1.length;
-        for (int i = 0; i < length; i++) {
-            String content = arr1[i];
-            String[] arr2 = content.split(",");
-            MyBitmapEntity entity = null;
-            for (int j = 0; j < arr2.length; j++) {
-                entity = new MyBitmapEntity();
-                entity.x = Float.valueOf(arr2[0]);
-                entity.y = Float.valueOf(arr2[1]);
-                entity.width = Float.valueOf(arr2[2]);
-                entity.height = Float.valueOf(arr2[3]);
-            }
-            mList.add(entity);
-        }
-        return mList;
-    }
+//    private List<MyBitmapEntity> getBitmapEntitys(int count) {
+//        List<MyBitmapEntity> mList = new LinkedList<>();
+//        String value = PropertiesUtil.readData(this, String.valueOf(count),
+//                R.raw.data);
+//        Logger.d("value=>" + value);
+//        String[] arr1 = value.split(";");
+//        int length = arr1.length;
+//        for (int i = 0; i < length; i++) {
+//            String content = arr1[i];
+//            String[] arr2 = content.split(",");
+//            MyBitmapEntity entity = null;
+//            for (int j = 0; j < arr2.length; j++) {
+//                entity = new MyBitmapEntity();
+//                entity.x = Float.valueOf(arr2[0]);
+//                entity.y = Float.valueOf(arr2[1]);
+//                entity.width = Float.valueOf(arr2[2]);
+//                entity.height = Float.valueOf(arr2[3]);
+//            }
+//            mList.add(entity);
+//        }
+//        return mList;
+//    }
 }
