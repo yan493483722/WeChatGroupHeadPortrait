@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.yanzi.wechatgroupheadportrait.R;
 import com.yanzi.wechatgroupheadportrait.entity.GroupHeaderPortraitEntity;
-import com.yanzi.wechatgroupheadportrait.utils.BitmapUtil;
 
 import java.util.List;
 
@@ -50,12 +49,18 @@ public class HeadPortraitAdapter extends RecyclerView.Adapter<HeadPortraitAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        GroupHeaderPortraitEntity entity=   list.get(position);
+        GroupHeaderPortraitEntity entity = list.get(position);
         holder.itemGroupPortraitName.setText(entity.getName());
         holder.itemGroupPortraitDesc.setText(entity.getDesc());
+        //先得到目标文件的大小 来决定当前文件的尺寸
+        ViewGroup.LayoutParams layoutParams = holder.itemGroupPortraitImage.getLayoutParams();
+        //总宽
+        int totalWidth = layoutParams.width;
+        //总高
+        int totalHeight = layoutParams.height;
         switch (position) {
             case 1:
-//                BitmapUtil.getScreenWidthAndHeight();
+
                 break;
             case 2:
                 break;

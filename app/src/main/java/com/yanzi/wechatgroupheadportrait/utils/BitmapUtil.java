@@ -1,10 +1,5 @@
 package com.yanzi.wechatgroupheadportrait.utils;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -21,24 +16,33 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.orhanobut.logger.Logger;
-import com.yanzi.wechatgroupheadportrait.model.MyBitmapEntity;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class BitmapUtil {
-    static public Drawable getScaleDraw(String imgPath, Context mContext) {
 
+    //得到图片的拉伸度
+    static public Drawable getScaleDraw(String imgPath, Context mContext) {
+        if (imgPath == null || "".equals(imgPath)) {
+            Logger.d("BitmapUtil getScaleDraw imgPath can not be empty ");
+            return null;
+        }
         Bitmap bitmap = null;
         try {
-            Log.d("BitmapUtil",
-                    "[getScaleDraw]imgPath is " + imgPath.toString());
             File imageFile = new File(imgPath);
             if (!imageFile.exists()) {
-                Log.d("BitmapUtil", "[getScaleDraw]file not  exists");
+                Logger.d("BitmapUtil getScaleDraw imgPath is wrong or not exists");
                 return null;
             }
+            //得到图片的尺寸
             BitmapFactory.Options opts = new BitmapFactory.Options();
+            //bitmap 为null 为了获取图片大小和压缩比例，从而进行深一步的操作
             opts.inJustDecodeBounds = true;
-            BitmapFactory.decodeFile(imgPath, opts);
-
+            //此时得到的bitmap为null
+            bitmap = BitmapFactory.decodeFile(imgPath, opts);
+            //如果图片过大 则进行压缩 防止OOM
             opts.inSampleSize = computeSampleSize(opts, -1, 800 * 480);
             // Log.d("BitmapUtil","inSampleSize===>"+opts.inSampleSize);
             opts.inJustDecodeBounds = false;
@@ -102,6 +106,12 @@ public class BitmapUtil {
         return bitmap;
     }
 
+    /**
+     * @param options
+     * @param minSideLength
+     * @param maxNumOfPixels
+     * @return
+     */
     public static int computeSampleSize(BitmapFactory.Options options,
                                         int minSideLength, int maxNumOfPixels) {
 
@@ -196,19 +206,19 @@ public class BitmapUtil {
         return bitmap;
     }
 
-    public static Bitmap getCombineBitmaps(List<MyBitmapEntity> mEntityList,
-                                           Bitmap... bitmaps) {
-        Logger.d("count=>" + mEntityList.size());
-        Bitmap newBitmap = Bitmap.createBitmap(200, 200, Config.ARGB_8888);
-        Logger.d("newBitmap=>" + newBitmap.getWidth() + ","
-                + newBitmap.getHeight());
-        for (int i = 0; i < mEntityList.size(); i++) {
-            Logger.d("i==>" + i);
-            newBitmap = mixtureBitmap(newBitmap, bitmaps[i], new PointF(
-                    mEntityList.get(i).x, mEntityList.get(i).y));
-        }
-        return newBitmap;
-    }
+//    public static Bitmap getCombineBitmaps(List<MyBitmapEntity> mEntityList,
+//                                           Bitmap... bitmaps) {
+//        Logger.d("count=>" + mEntityList.size());
+//        Bitmap newBitmap = Bitmap.createBitmap(200, 200, Config.ARGB_8888);
+//        Logger.d("newBitmap=>" + newBitmap.getWidth() + ","
+//                + newBitmap.getHeight());
+//        for (int i = 0; i < mEntityList.size(); i++) {
+//            Logger.d("i==>" + i);
+//            newBitmap = mixtureBitmap(newBitmap, bitmaps[i], new PointF(
+//                    mEntityList.get(i).x, mEntityList.get(i).y));
+//        }
+//        return newBitmap;
+//    }
 
     /**
      * @param columns
